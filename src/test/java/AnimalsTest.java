@@ -5,6 +5,11 @@ import static org.junit.Assert.*;
 import org.sql2o.*;
 
 public class AnimalsTest{
+
+    //This is a database rule
+    @Rule
+    public DatabaseRule database = new DatabaseRule();
+    
     //This test checks whether the instance instantiates correctly
     @Test
     public  void animals_instantiatesCorrectly(){
@@ -32,4 +37,16 @@ public class AnimalsTest{
         myanimal.save();
         assertTrue(Animals.all().get(0).equals(myanimal));
     }
+
+    //Lets return all database entries
+    @Test
+    public void all_returnsAllInstancesOfPerson_true() {
+      Animals myanimal1 = new Animals("Birds");
+      myanimal1.save();
+      Animals myanimal2 = new Animals("crocks");
+      myanimal2.save();
+      assertEquals(true, Animals.all().get(0).equals(myanimal1));
+      assertEquals(true, Animals.all().get(1).equals(myanimal2));
+    }
+    
 }

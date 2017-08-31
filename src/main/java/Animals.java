@@ -6,6 +6,7 @@ that are necessary for all my other classes.abstract
 
 import java.util.ArrayList;
 import java.util.List;
+import org.sql2o.*;
 
 public class Animals{
     private String name;
@@ -28,4 +29,20 @@ public class Animals{
             return this.getName().equals(newAnimals.getName());
         }
     }
+    //Now we are going to save our animals
+    public void save() {
+        try(Connection con = DB.sql2o.open()) {
+          String sql = "INSERT INTO animals (name) VALUES (:name)";
+          con.createQuery(sql)
+            .addParameter("name", this.name)
+            .executeUpdate();
+        }
+      }
+      //Now lets addthe returning for all columns
+      public static List<Animals> all() {
+        String sql = "SELECT * FROM animals";
+        try(Connection con = DB.sql2o.open()) {
+         return con.createQuery(sql).executeAndFetch(Animals.class);
+        }
+      }
 }
