@@ -55,4 +55,12 @@ public class AnimalsTest{
         Animals savedanimal = Animals.all().get(0);
         assertEquals(myanimal.getId(), savedanimal.getId());
     }
+    //Lets find an animal basing on its id
+    public void find_returnsfirdtAnimalwithid_secondAnimal(){
+        Animals myanimal1 = new Animals("Birds");
+        myanimal1.save();
+        Animals myanimal2 = new Animals("Birds");
+        myanimal2.save();
+        assertEquals(Animals.find(myanimal2.getId()),myanimal2);
+    }
 }
