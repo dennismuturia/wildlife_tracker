@@ -19,6 +19,11 @@ public class Animals{
         return name;
     }
 
+    //Getter to return id
+    public int getId() {
+        return id;
+    }
+
     //This will be an override that returns if the passed values are the same
     @Override
     public boolean equals(Object otherAnimal){
@@ -33,9 +38,10 @@ public class Animals{
     public void save() {
         try(Connection con = DB.sql2o.open()) {
           String sql = "INSERT INTO animals (name) VALUES (:name)";
-          con.createQuery(sql)
+          this.id = (int) con.createQuery(sql, true)
             .addParameter("name", this.name)
-            .executeUpdate();
+            .executeUpdate()
+            .getKey();
         }
       }
       //Now lets addthe returning for all columns
