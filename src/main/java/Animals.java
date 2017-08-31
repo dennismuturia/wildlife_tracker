@@ -14,7 +14,13 @@ public class Animals{
         this.name = name;
         this.id = id;
     }
+    //This is a getter for the name variable
     public String getName(){
         return name;
     }
+    //A getter for id variable
+    public int getId(){
+        return id;
+    }
+
 }

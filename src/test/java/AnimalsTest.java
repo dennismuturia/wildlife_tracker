@@ -18,6 +18,11 @@ public class AnimalsTest{
         assertEquals("Carnivores", myanimal.getName()); 
     }
 
-    
+    //Checks whether it instantiates correctly with id
+    @Test
+    public void animals_instantiatesCorrectlyWithEmail(){
+        Animals myanimal = new Animals("Canivore", 1);
+        assertEquals(1, myanimal.getId()); 
+    }
 
 }
