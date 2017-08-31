@@ -2,27 +2,34 @@
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.sql2o.*;
 
 public class AnimalsTest{
     //This test checks whether the instance instantiates correctly
     @Test
     public  void animals_instantiatesCorrectly(){
-        Animals myanimal = new Animals("Carnivores",1);
+        Animals myanimal = new Animals("Carnivores");
         assertEquals(true, myanimal instanceof Animals);
     }
 
     //This test checks whether the instance instantiates with name
     @Test
     public void animals_instantiatescorrectlyWithName(){
-        Animals myanimal = new Animals("Carnivores", 1);
+        Animals myanimal = new Animals("Carnivores");
         assertEquals("Carnivores", myanimal.getName()); 
     }
 
-    //Checks whether it instantiates correctly with id
+    //Now lets check if it can return the same 
     @Test
-    public void animals_instantiatesCorrectlyWithEmail(){
-        Animals myanimal = new Animals("Canivore", 1);
-        assertEquals(1, myanimal.getId()); 
+    public void returns_trueifNameandIdareSame(){
+        Animals myanimal1 = new Animals("Canivore");
+        Animals myanimal2 = new Animals("Canivore");
+        assertTrue(myanimal1.equals(myanimal2));
     }
-
+    //Checking the saving into databse
+    public void save_insertObjectIntoDtaBase_Animals(){
+        Animals myanimal = new Animals("Canivore");
+        myanimal.save();
+        assertTrue(Animals.all().get(0).equals(myanimal));
+    }
 }

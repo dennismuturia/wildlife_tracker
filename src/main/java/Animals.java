@@ -10,17 +10,22 @@ import java.util.List;
 public class Animals{
     private String name;
     private int id;
-    public Animals(String name, int id){
+    public Animals(String name){
         this.name = name;
-        this.id = id;
     }
     //This is a getter for the name variable
     public String getName(){
         return name;
     }
-    //A getter for id variable
-    public int getId(){
-        return id;
-    }
 
+    //This will be an override that returns if the passed values are the same
+    @Override
+    public boolean equals(Object otherAnimal){
+        if(!(otherAnimal instanceof Animals)){
+            return false;
+        }else{
+            Animals newAnimals = (Animals) otherAnimal;
+            return this.getName().equals(newAnimals.getName());
+        }
+    }
 }
