@@ -9,9 +9,9 @@ import org.sql2o.*;
 
 //main class
 public class Danger{
-    public String name;
-    public int animalId;
-    public int id;
+    private String name;
+    private int animalId;
+    private int id;
 
     public Danger(String name, int animalId){
         this.name = name;
@@ -44,10 +44,10 @@ public class Danger{
     //Now lets create a function for the save
     public void save(){
         try(Connection con = DB.sql2o.open()){
-            String sql =  "INSERT INTO danger (name, animalId) VALUES (:name, :animalId)";
+            String sql =  "INSERT INTO danger (name, animalid) VALUES (:name, :animalId)";
             this.id = (int) con.createQuery(sql, true)
             .addParameter("name", this.name)
-            .addParameter("personId", this.animalId)
+            .addParameter("animalId", this.animalId)
             .executeUpdate()
             .getKey();
         }
@@ -59,5 +59,15 @@ public class Danger{
             return con.createQuery(sql).executeAndFetch(Danger.class);
         }
     }
+    //Lets implement the find functionality
+    public static Danger find(int id) {
+        try(Connection con = DB.sql2o.open()) {
+          String sql = "SELECT * FROM danger where id=:id";
+          Danger danger = con.createQuery(sql)
+            .addParameter("id", id)
+            .executeAndFetchFirst(Danger.class);
+          return danger;
+        }
+      }
 
 }

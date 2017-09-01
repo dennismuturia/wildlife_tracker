@@ -48,10 +48,19 @@ public class DangerTest{
     public void returnsAllInstancesof_Danger_True(){
         Danger myDanger1 = new Danger("Dinosaur",1);
         myDanger1.save();
-        Danger myDanger2 = new Danger("Tina",2);
+        Danger myDanger2 = new Danger("Tina",3);
         myDanger2.save();
         assertEquals(true, Danger.all().get(0).equals(myDanger1));
         assertEquals(true, Danger.all().get(1).equals(myDanger2));  
+    }
+    //Lets find the endagered species
+    public void returnsAllTheDangerwithsameid_myDanger2(){
+        Danger myDanger1 = new Danger("Dinosour",1);
+        myDanger1.save();
+        Danger myDanger2 = new Danger("mimi",2);
+        myDanger2.save();
+        assertEquals(Danger.find(myDanger2.getId()), myDanger2);
+
     }
   
 }
