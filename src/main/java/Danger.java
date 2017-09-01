@@ -24,5 +24,18 @@ public class Danger{
     public int getAnimalId(){
         return animalId;
     }
+    //Create an override to find aspecific with an id
+    @Override
+    public boolean equals(Object otherDanger){
+        if(!(otherDanger instanceof Danger)){
+            return false;
+        }else{
+            Danger newDanger = (Danger) otherDanger;
+            return this.getName().equals(newDanger.getName())&&
+                this.getAnimalId() == newDanger.getAnimalId();
+        }
+    }
+    //Now lets create a function for the save
+    
 
 }

@@ -20,4 +20,19 @@ public class DangerTest{
         Danger myDanger = new Danger("Dinosaur",1);
         assertEquals(1, myDanger.getAnimalId());  
     }
+
+    //Lets see if it returns the same
+    @Test
+    public void returns_TrueifNamesandIdAreSame(){
+        Danger myDanger1 = new Danger("Dinosaur",1);
+        Danger myDanger2 = new Danger("Dinosaur",1);
+        assertTrue(myDanger1.equals(myDanger2));
+    }
+    //Now lets save
+    @Test
+    public void returns_TrueifNamesAreTheSame(){
+        Danger myDanger1 = new Danger("Dinosaur",1);
+        myDanger1.save();
+        assertTrue(Danger.all().get(0).equals(myDanger1));
+    }
 }
