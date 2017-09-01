@@ -6,6 +6,7 @@ This is a child class of the animal that has a relationship of one to many
 import java.util.ArrayList;
 import java.util.List;
 import org.sql2o.*;
+
 //main class
 public class Danger{
     public String name;
@@ -36,6 +37,15 @@ public class Danger{
         }
     }
     //Now lets create a function for the save
-    
+    public void save(){
+        try(Connection con = DB.sql2o.open()){
+            String sql =  "INSERT INTO danger (name, animalId) VALUES (:name, :animalId)";
+            this.id = (int) con.createQuery(sql, true)
+            .addParameter("name", this.name)
+            .addParameter("personId", this.animalId)
+            .executeUpdate()
+            .getKey();
+        }
+    }
 
 }
