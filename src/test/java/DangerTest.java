@@ -35,4 +35,23 @@ public class DangerTest{
         myDanger1.save();
         assertTrue(Danger.all().get(0).equals(myDanger1));
     }
+    //Why dont we create a test that assigns the id to endagered
+    @Test
+    public void assignsIdToEndageredSpecies(){
+        Danger myDanger1 = new Danger("Dinosaur",1);
+        myDanger1.save();
+        Danger savedDanger = Danger.all().get(0);
+        assertEquals(savedDanger.getId(), myDanger1.getId());
+    }
+    //Lets return all instances of danger in a database
+    @Test
+    public void returnsAllInstancesof_Danger_True(){
+        Danger myDanger1 = new Danger("Dinosaur",1);
+        myDanger1.save();
+        Danger myDanger2 = new Danger("Tina",2);
+        myDanger2.save();
+        assertEquals(true, Danger.all().get(0).equals(myDanger1));
+        assertEquals(true, Danger.all().get(1).equals(myDanger2));  
+    }
+  
 }
