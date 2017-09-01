@@ -13,6 +13,7 @@ public class Danger{
 
     public Danger(String name, int animalId){
         this.name = name;
+        this.animalId = animalId;
     
     }
     //this returns the name
