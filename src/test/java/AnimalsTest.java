@@ -7,7 +7,7 @@ import org.sql2o.*;
 public class AnimalsTest{
 
     //This is a database rule
-    /*
+
     @Rule
     public DatabaseRule database = new DatabaseRule();
     
@@ -65,5 +65,5 @@ public class AnimalsTest{
         myanimal2.save();
         assertEquals(Animals.find(myanimal2.getId()),myanimal2);
     }
-    */
+    
 }
