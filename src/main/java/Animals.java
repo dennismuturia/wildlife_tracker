@@ -11,6 +11,7 @@ import org.sql2o.*;
 public class Animals{
     private String name;
     private int id;
+    private int sightingId;
     public Animals(String name){
         this.name = name;
     }
@@ -22,6 +23,10 @@ public class Animals{
     //Getter to return id
     public int getId() {
         return id;
+    }
+    //Initialize the sighting id
+    public int getSightingId(){
+        return sightingId;
     }
 
     //This will be an override that returns if the passed values are the same
@@ -37,9 +42,10 @@ public class Animals{
     //Now we are going to save our animals
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-          String sql = "INSERT INTO animals (name) VALUES (:name)";
+          String sql = "INSERT INTO animals (name, sightingId) VALUES (:name, :sightingid)";
           this.id = (int) con.createQuery(sql, true)
             .addParameter("name", this.name)
+            .addParameter("sightingid", this.sightingId)
             .executeUpdate()
             .getKey();
         }
